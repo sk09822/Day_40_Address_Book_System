@@ -185,3 +185,11 @@ deleteContact("Sandipan", "Kanade");
 console.log(addressBookArray);
 
 console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
+
+console.log("\nAdding Duplicate Contact");
+try {
+    addContact(secondContact);
+} catch (e) {
+    console.error(e);
+}
+console.log(addressBookArray);
