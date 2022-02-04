@@ -117,6 +117,13 @@ function contactExists(firstName, lastName) {
     return addressBookArray.some(contact => contact.firstName == firstName && contact.lastName == lastName);
 }
 
+function addContact(contact) {
+    if (!contactExists(contact.firstName, contact.lastName)) 
+        addressBookArray.push(contact);
+    else 
+        throw "Contact is Present in the Address Book";
+}
+
 function editContact(firstName, lastName, property, newValue) {
     if (contactExists(firstName, lastName)) {
         switch (property) {
@@ -160,14 +167,20 @@ function getCountOfContacts(count) {
     return count;
 }
 
-try {
-    addressBookArray.push(new Contact("Sandipan", "Kanade", "Shirdi", "Ahmednagar", "Maharashtra", "560 043", "91 9822726196", "sandipan@gmail.com"));
-} catch (e) {
-    console.error(e);
-}
+function searchContactByCity(city) {
+    return addressBookArray.filter((contact) => contact.city == city);
+  }
+  
+function searchContactByState(state) {
+    return addressBookArray.filter((contact) => contact.state == state);
+  }
+
+let firstContact = new Contact("Sandipan", "Kanade", "Shirdi", "Ahmednagar", "Maharashtra", "560 043", "91 9822726196", "sandipan@gmail.com");
+let secondContact = new Contact("Niranjan", "Anap", "#6ac810", "KokuroMontain", "Japan", "234 567", "91 9898989897", "killua@gmail.com");
 
 try {
-    addressBookArray.push(new Contact("Niranjan", "Anap", "#6ac810", "KokuroMontain", "Japan", "234 567", "91 9898989897", "niranjan@gmail.com"));
+    addressBookArray.push(firstContact);
+    addressBookArray.push(secondContact);
 } catch (e) {
     console.error(e);
 }
@@ -181,7 +194,7 @@ console.log(addressBookArray);
 console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
 
 console.log("\nAfter Deleting Contact");
-deleteContact("Sandipan", "Kanade");
+deleteContact("Sandipan", "Kanande");
 console.log(addressBookArray);
 
 console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
@@ -193,3 +206,9 @@ try {
     console.error(e);
 }
 console.log(addressBookArray);
+
+console.log("\nSearch Contact By City");
+console.log(searchContactByCity("KokuroMountain"));
+
+console.log("\nSearch Contact By State");
+console.log(searchContactByState("Japan"));
