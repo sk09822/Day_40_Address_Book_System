@@ -185,7 +185,15 @@ function viewContactsByState(state){
     return addressBookArray.filter((contact) => contact.state == state);
 }
 
-let firstContact = new Contact("Sanndipan", "Kanade", "#3ac910", "Ahmednagar", "Maharashtra", "560 043", "91 9822726196", "sandipan@gmail.com");
+function getCountOfContactsByCity(city){
+    return addressBookArray.filter((contact) => contact.city == city).length;
+}
+
+function getCountOfContactsByState(state){
+    return addressBookArray.filter((contact) => contact.state == state).length;
+}
+
+let firstContact = new Contact("Sandipan", "Kanade", "#3ac910", "Ahmednagar", "Maharashtra", "560 043", "91 9822726196", "sandipan@gmail.com");
 let secondContact = new Contact("Killua", "Zoldyk", "#6ac810", "KokuroMountain", "Japan", "234 567", "91 9898989897", "killua@gmail.com");
 let thirdContact = new Contact("Alexis", "Rose", "#8105bc", "SchittsCreek", "Canada", "550 864", "91 9485768574", "alexis@gmail.com");
 let fourthContact = new Contact("David", "Rose", "#8105bc", "SchittsCreek", "Canada", "550 864", "91 9465837465", "david@gmail.com");
@@ -202,7 +210,7 @@ try {
 console.log(addressBookArray);
 
 console.log("\nAfter Editing Contact");
-editContact("Ashika", "Chadaga", "city", "Kodagu");
+editContact("Sandipan", "Kanade", "city", "Shirdi");
 console.log(addressBookArray);
 
 console.log("\nCount of Contacts : " + addressBookArray.reduce(getCountOfContacts, 0));
@@ -221,15 +229,18 @@ try {
 }
 console.log(addressBookArray);
 
-console.log("\nSearch Killua In City - KokuroMountain");
+console.log("\nSearch Killua In City - Kokuro Mountain");
 console.log(searchContactByCity("Killua", "KokuroMountain"));
 
 console.log("\nSearch Killua In State - Japan");
 console.log(searchContactByState("Killua", "Japan"));
 
 
-console.log("\nView Contacts By City : SchittsCreek \n" );
+console.log("\nView Contacts By City : Schitt's Creek \n" );
 console.log(viewContactsByCity("SchittsCreek"));
 
 console.log("\nView Contacts By State : Canada \n" );
 console.log(viewContactsByState("Canada"));
+
+console.log("\nNumber of Contacts residing in City : Schitt's Creek = " + getCountOfContactsByCity("SchittsCreek"));
+console.log("\nNumber of Contacts residing in State : Canada = " + getCountOfContactsByState("Canada"));
